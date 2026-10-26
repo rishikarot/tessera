@@ -1,0 +1,24 @@
+{
+  "name": "tessera",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Tessera: a minimal no-code platform for building business modules, views and automations.",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter ./apps/* dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "db:up": "docker compose up -d postgres",
+    "db:migrate": "pnpm --filter @tessera/api migrate",
+    "db:seed": "pnpm --filter @tessera/api seed"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
