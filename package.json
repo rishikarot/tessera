@@ -9,7 +9,7 @@
   },
   "scripts": {
     "preinstall": "npx -y only-allow pnpm",
-    "dev": "pnpm -r --parallel --filter ./apps/* dev",
+    "dev": "pnpm --parallel --filter @tessera/api --filter @tessera/web dev",
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
