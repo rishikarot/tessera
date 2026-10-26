@@ -8,6 +8,7 @@
     "node": ">=20"
   },
   "scripts": {
+    "preinstall": "npx -y only-allow pnpm",
     "dev": "pnpm -r --parallel --filter ./apps/* dev",
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",

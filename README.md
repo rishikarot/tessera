@@ -16,7 +16,13 @@ Calendar, gallery, timeline, list and Gantt views can already be created and sav
 
 ## Run it locally
 
-You need Node 20+ and pnpm (`corepack enable`).
+You need Node 20+, Docker Desktop (running) and pnpm. This project uses pnpm workspaces, so `npm install` will not work. Turn on pnpm once with:
+
+```bash
+corepack enable       # or: npm install -g pnpm
+```
+
+Then:
 
 ```bash
 pnpm install
