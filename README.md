@@ -35,14 +35,16 @@ Sign in with any email (development sign-in). Use `demo@tessera.local` to see th
 
 ### Using Supabase instead of Docker
 
-Tessera only needs a Postgres database, so a Supabase project works as is:
+Tessera only needs a Postgres database, so a Supabase project works as is. All of Tessera's tables live in their own `tessera` schema, so it can share a project with other apps without touching their tables, and that schema is not exposed through Supabase's public Data API.
 
-1. In Supabase, open **Connect** and copy the **Session pooler** connection string.
-2. Run with it as `DATABASE_URL`, adding `?sslmode=require`:
+1. In Supabase, open your project, click **Connect**, and copy the **Session pooler** connection string.
+2. Copy `.env.example` to `.env` and set `DATABASE_URL` to that string with your database password filled in and `?sslmode=require` added at the end.
+3. Run:
 
 ```bash
-export DATABASE_URL="postgres://postgres.<ref>:<password>@aws-0-<region>.pooler.supabase.com:5432/postgres?sslmode=require"
-pnpm db:seed && pnpm dev
+pnpm install
+pnpm db:seed          # optional demo data
+pnpm dev
 ```
 
 Migrations run automatically when the API starts.

@@ -1,11 +1,13 @@
+import './env.js';
 import { readdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { connect, type Sql } from './db.js';
+import { DB_SCHEMA, connect, type Sql } from './db.js';
 
 const MIGRATIONS_DIR = fileURLToPath(new URL('../migrations/', import.meta.url));
 
 /** Applies every .sql file in migrations/ that has not run yet, in name order. */
 export async function migrate(sql: Sql): Promise<string[]> {
+  await sql`create schema if not exists ${sql(DB_SCHEMA)}`;
   await sql`create table if not exists schema_migrations (name text primary key, applied_at timestamptz not null default now())`;
   const done = new Set((await sql<{ name: string }[]>`select name from schema_migrations`).map((r) => r.name));
   const files = (await readdir(MIGRATIONS_DIR)).filter((f) => f.endsWith('.sql')).sort();

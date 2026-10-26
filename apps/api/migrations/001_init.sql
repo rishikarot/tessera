@@ -1,7 +1,5 @@
 -- Tessera core schema: tenants, user-defined modules and fields, records as JSONB.
 
-create extension if not exists pgcrypto;
-
 create table users (
   id uuid primary key default gen_random_uuid(),
   email text not null unique,

@@ -1,3 +1,4 @@
+import './env.js';
 import type { Choice } from '@tessera/shared';
 import { connect } from './db.js';
 import { migrate } from './migrate.js';
